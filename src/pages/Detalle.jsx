@@ -1,13 +1,10 @@
-import { useState } from "react";
 import { useParams } from "react-router-dom";
-import {usePokemon} from "../hooks/usePokemon";
+import { usePokemonWithoutQuery } from "../hooks/usePokemon";
 import { BarChart } from "@tremor/react";
 
 export default function Detalle () {
-  const [photo, ] = useState('default')
-  let { name } = useParams()
-  const { isLoading, error, data: pokemonData } = usePokemon('repoData', name)
-
+  const { name } = useParams()
+  const { isLoading, error, data: pokemonData } = usePokemonWithoutQuery('repoData', name)
   if (isLoading) {
     return <div id="loading">Loading...</div>
   }

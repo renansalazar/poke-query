@@ -1,10 +1,10 @@
-import { usePokemones } from '../hooks/usePokemon'
+import { usePokemonesWithoutQuery } from '../hooks/usePokemon'
 import { Pokemon } from './Pokemon'
 import { Link } from "react-router-dom";
 
 export const Lista = () => {
 
-  const { isLoading, error, data, fetchNextPage } = usePokemones('pokemones')
+  const { isLoading, error, data, fetchNextPage } = usePokemonesWithoutQuery('pokemones')
 
   if (isLoading) {
     return <div id="loading">Loading...</div>
