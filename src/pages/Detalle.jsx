@@ -1,10 +1,8 @@
-import { useState } from "react";
 import { useParams } from "react-router-dom";
 import {usePokemon} from "../hooks/usePokemon";
 import { BarChart } from "@tremor/react";
 
 export default function Detalle () {
-  const [photo, ] = useState('default')
   let { name } = useParams()
   const { isLoading, error, data: pokemonData } = usePokemon('repoData', name)
 
@@ -17,7 +15,7 @@ export default function Detalle () {
   }
 
   let chartdata = []
-  pokemonData.stats.forEach((s, index)=>{
+  pokemonData.stats.forEach(s =>{
     const elemento = {
       name: s.stat.name,
       Stat: Number(s.base_stat),

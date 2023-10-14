@@ -1,11 +1,11 @@
+import { useTransition } from '../hooks/useTransition';
 import { usePokemones } from '../hooks/usePokemon'
 import { Pokemon } from './Pokemon'
 import { Link } from "react-router-dom";
 
 export const Lista = () => {
-
+  const transition = useTransition()
   const { isLoading, error, data, fetchNextPage } = usePokemones('pokemones')
-
   if (isLoading) {
     return <div id="loading">Loading...</div>
   }
@@ -23,9 +23,13 @@ export const Lista = () => {
       {
         data.pages.map(p=>{
           return p.results.map(poke=>{
+            const routeToGo = "/detalle/" + poke.name
             return (
               <li key={"key-" + poke.name}>
-                <Link to={"/detalle/" + poke.name}>
+                <Link to={routeToGo} onClick={(e) => {
+                  e.preventDefault()
+                  transition.navigateTo(routeToGo)
+                }}>
                   <Pokemon data={poke} />
                 </Link>
               </li>
